@@ -74,7 +74,7 @@ input, select, textarea {
 		-webkit-transition: background-color 0.2s ease;
 		-ms-transition: background-color 0.2s ease;
 		transition: background-color 0.2s ease, opacity 0.35s ease;
-		background: #CC676D;
+		background: #ff8080;
 		height: 3em;
 		left: 0;
 		line-height: 3em;
@@ -200,7 +200,7 @@ input, select, textarea {
 				opacity: 0;
 			}
 
-/* Menu */
+	/* Menu */
 
 	#menu {
 		-moz-transform: translateX(20em);
