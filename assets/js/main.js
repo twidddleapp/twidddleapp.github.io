@@ -1,7 +1,10 @@
 (function($) {
 
 	var	$window = $(window),
-		$body = $('body');
+		$body = $('body'),
+		$banner = $('#banner'),
+		$header = $('#header'),
+		$first = $('#first');
 
 	// Breakpoints.
 		breakpoints({
@@ -32,8 +35,40 @@
 	// Scrolly.
 		$('.scrolly')
 			.scrolly({
-				offset: 100
+				speed: 1500,
+				offset: $header.outerHeight()
 			});
+
+	// Menu.
+		$('#menu')
+			.append('<a href="#menu" class="close"></a>')
+			.appendTo($body)
+			.panel({
+				delay: 500,
+				hideOnClick: true,
+				hideOnSwipe: true,
+				resetScroll: true,
+				resetForms: true,
+				side: 'right',
+				target: $body,
+				visibleClass: 'is-menu-visible'
+			});
+
+	// Header.
+		if ($banner.length > 0 && $header.length > 0 && $first.length > 0) {
+
+			var updateHeaderState = function() {
+				var threshold = $first.offset().top - $header.outerHeight();
+				if ($window.scrollTop() >= threshold)
+					$header.removeClass('alt');
+				else
+					$header.addClass('alt');
+			};
+
+			$window.on('scroll resize load', updateHeaderState);
+			updateHeaderState();
+
+		}
 
 	// Polyfill: Object fit.
 		if (!browser.canUse('object-fit')) {
